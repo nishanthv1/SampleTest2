@@ -23,10 +23,9 @@ pipeline {
           }
       }
           post {
-    success {
-        dependencyCheck additionalArguments: '', odcInstallation: 'Owasp dependency Check'
-        dependencyCheckPublisher pattern: ''
+            success {
+                dependencyCheck additionalArguments: '', odcInstallation: 'Owasp dependency Check'
+                dependencyCheckPublisher pattern: ''
     }
-          }
-}
+ }
 }
