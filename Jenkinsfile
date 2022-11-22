@@ -19,7 +19,7 @@ pipeline {
       stage('Semgrep-Scan') {
           steps {
             sh "pip3 install semgrep"
-            sh "semgrep --config=auto /"
+            sh "semgrep ci"
           }
       }
 }
