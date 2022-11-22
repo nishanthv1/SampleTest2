@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git 'https://github.com/Nithink-Hexaware/Sample-Test.git'
+                git 'https://github.com/nishanthv-hexa/SampleTEs1.git'
             }
             }
         
