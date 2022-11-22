@@ -22,6 +22,7 @@ pipeline {
             sh "semgrep ci"
           }
       }
+        stage('Post-build'){
           post {
             success {
                 dependencyCheck additionalArguments: '', odcInstallation: 'Owasp dependency Check'
@@ -30,3 +31,4 @@ pipeline {
  }
 }
 }
+
