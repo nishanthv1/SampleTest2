@@ -1,11 +1,11 @@
-# -- stackhawk configuration for OpenCart_Local --
+# -- stackhawk configuration for OpenCart-V2 --
 app:
   # -- An applicationId obtained from the StackHawk platform. --
-  applicationId: 97d301cb-8c4e-4677-9ebb-4e5ea7c043ad # (required)
+  applicationId: eb4d746b-fbfd-4703-bb0e-058940409ff3 # (required)
   # -- The environment for the applicationId defined in the StackHawk platform. --
   env: Development # (required)
   # -- The url of your application to scan --
-  host: http://atop.tensai.run:90 # (required)
+  host: https://tensaiopencart.eastus.cloudapp.azure.com # (required)
 
 
 # -- Customized Configuration for GraphQL/SOAP/OpenAPI, add here --
