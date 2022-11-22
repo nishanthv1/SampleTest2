@@ -27,5 +27,6 @@ pipeline {
         dependencyCheck additionalArguments: '', odcInstallation: 'Owasp dependency Check'
         dependencyCheckPublisher pattern: ''
     }
+          }
 }
 }
