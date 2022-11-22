@@ -22,5 +22,10 @@ pipeline {
             sh "semgrep ci"
           }
       }
+          post {
+    success {
+        dependencyCheck additionalArguments: '', odcInstallation: 'Owasp dependency Check'
+        dependencyCheckPublisher pattern: ''
+    }
 }
 }
