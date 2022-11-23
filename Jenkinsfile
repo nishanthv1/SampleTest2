@@ -22,7 +22,7 @@ pipeline {
             sh "semgrep ci"
           }
       }
-        stage('Post-build'){
+        stage('Dependency Check'){
             steps {
                 dependencyCheck additionalArguments: '', odcInstallation: 'Owasp dependency Check'
                 dependencyCheckPublisher pattern: ''
