@@ -26,7 +26,6 @@ pipeline {
             steps {
                 dependencyCheck additionalArguments: '', odcInstallation: 'Owasp dependency Check'
                 dependencyCheckPublisher pattern: ''
-                sh 'git push https://github.com/nishanthv-hexa/SampleTEs1.git'
  }
 }
 }
