@@ -24,12 +24,8 @@ pipeline {
       }
         stage('Post-build'){
             steps {
-          post {
-            success {
                 dependencyCheck additionalArguments: '', odcInstallation: 'Owasp dependency Check'
                 dependencyCheckPublisher pattern: ''
-    }
-   }
  }
 }
 }
