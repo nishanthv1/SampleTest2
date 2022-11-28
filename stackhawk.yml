@@ -6,7 +6,7 @@ app:
   env: Development # (required)
   # -- The url of your application to scan --
   host: https://tensaiopencart.eastus.cloudapp.azure.com # (required)
-  abcdd2weswsw
+  abcdd2weswswcss
 
 # -- Customized Configuration for GraphQL/SOAP/OpenAPI, add here --
   # Configuration Docs: https://docs.stackhawk.com/hawkscan/configuration/
