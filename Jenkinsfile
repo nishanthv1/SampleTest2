@@ -28,6 +28,12 @@ pipeline {
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
+        
+        stage ('Retire'){
+            steps {
+            sh '$ retire --outputformat cyclonedx'
+            }
+        }
 }
 }
  
