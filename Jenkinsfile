@@ -37,7 +37,7 @@ pipeline {
         
         stage ("bandit"){
            steps {
-                sh 'bandit -r -f html -o report.html'
+                sh 'bandit -r /var/lib/jenkins/workspace/SampleTest1 -f html -o report.html'
             }}
 }
 }
