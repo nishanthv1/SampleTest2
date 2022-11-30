@@ -28,6 +28,11 @@ pipeline {
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
+        stage ('sonarQube'){
+            steps {
+            waitForQualityGate abortPipeline: false, credentialsId: 'token2'}
+        }
+        
         
         
         stage ("bandit"){
