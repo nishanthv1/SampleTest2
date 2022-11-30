@@ -29,11 +29,6 @@ pipeline {
             }
         }
         
-        stage ('NPM Audit'){
-            steps {
-            sh 'npm audit'
-            }
-        }
         
         stage ("bandit"){
            steps {
