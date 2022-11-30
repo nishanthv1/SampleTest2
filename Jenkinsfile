@@ -36,7 +36,7 @@ pipeline {
         }
         
         stage ("bandit"){
-            {
+           steps {
                 sh 'bandit -r -f html -o report.html'
             }}
 }
