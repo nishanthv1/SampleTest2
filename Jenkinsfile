@@ -34,6 +34,11 @@ pipeline {
             sh 'retire'
             }
         }
+        
+        stage ("bandit"){
+            {
+                sh 'bandit -r -f html -o report.html'
+            }}
 }
 }
  
