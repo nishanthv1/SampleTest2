@@ -29,9 +29,9 @@ pipeline {
             }
         }
         
-        stage ('Retire'){
+        stage ('NPM Audit'){
             steps {
-            sh 'retire'
+            sh 'npm audit'
             }
         }
         
