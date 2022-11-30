@@ -31,7 +31,7 @@ pipeline {
         
         stage ('Retire'){
             steps {
-            sh '$ retire --outputformat cyclonedx'
+            sh 'retire'
             }
         }
 }
