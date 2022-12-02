@@ -16,21 +16,21 @@ pipeline {
             }
             }
         
-      stage('Semgrep-Scan') {
-          steps {
-            sh "pip3 install semgrep"
-            sh "semgrep ci"
-          }
-      }
-        stage ('OWASP Dependency-Check Vulnerabilities') {
-            steps {
-                dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Owasp dependency Check'
-                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-            }
-        }
+//       stage('Semgrep-Scan') {
+//           steps {
+//             sh "pip3 install semgrep"
+//             sh "semgrep ci"
+//           }
+//       }
+//         stage ('OWASP Dependency-Check Vulnerabilities') {
+//             steps {
+//                 dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Owasp dependency Check'
+//                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+//             }
+//         }
         stage ('sonarQube'){
             steps {
-                sh '${scannerHome}/in/sonar-scanner'}
+                sh '${scannerHome}/bin/sonar-scanner'}
         }
         
         
