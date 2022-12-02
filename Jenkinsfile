@@ -28,12 +28,12 @@ pipeline {
 //                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
 //             }
 //         }
-        stage ('sonarQube'){
-            steps {
-                withSonarQubeEnv('Sonarqube'){
-                sh '${scannerHome}/bin/sonar-scanner'}
-        }
-        }
+  stage('SonarQube Analysis') {
+    def scannerHome = tool 'SonarScanner';
+    withSonarQubeEnv() {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
         
         
         
