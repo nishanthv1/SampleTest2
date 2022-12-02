@@ -30,7 +30,7 @@ pipeline {
         }
         stage ('sonarQube'){
             steps {
-            waitForQualityGate abortPipeline: false, credentialsId: 'token2'}
+                sh '${scannerHome}/in/sonar-scanner'}
         }
         
         
