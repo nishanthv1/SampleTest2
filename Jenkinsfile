@@ -40,7 +40,9 @@ pipeline {
   }
         
         
-        
+        stage('PMD'){
+            steps{
+            sh 'pmd -d -f txt -r rulesets/java/quickstart.xml -reportfile report.txt'}}
         stage ("bandit"){
            steps {
                 sh 'bandit -r /var/lib/jenkins/workspace/SampleTest1 -f html -o /var/lib/jenkins/workspace/SampleTest1report.html'
