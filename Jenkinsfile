@@ -9,7 +9,7 @@ pipeline {
       //  SEMGREP_TIMEOUT = "300"
     }
 
-//     stages {
+     stages {
 //         stage('Build') {
 //             steps {
 //                 git 'https://github.com/nishanthv-hexa/SampleTEs1.git'
