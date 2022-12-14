@@ -10,11 +10,11 @@ pipeline {
     }
 
      stages {
-//         stage('Build') {
-//             steps {
-//                 git 'https://github.com/nishanthv-hexa/SampleTEs1.git'
-//             }
-//             }
+        stage('Build') {
+            steps {
+                git 'https://github.com/nishanthv-hexa/SampleTEs1.git'
+            }
+            }
         stage ('OWASP Dependency-Check Vulnerabilities') {
             steps {
                 dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Owasp dependency Check'
