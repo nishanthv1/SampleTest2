@@ -48,7 +48,7 @@ pipeline {
   -H \'Content-Type: multipart/form-data\' \\
   -F \'test=1\' \\
   -F \'@file=banditResult.json;type=application/json\' \\
-  -F \'scan_type=Bandit scan\' \\
+  -F \'scan_type=Bandit Scan\' \\
   -F \'tags=test\' \\'''
              }
          }
