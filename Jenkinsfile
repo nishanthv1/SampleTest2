@@ -41,7 +41,7 @@ pipeline {
 //   }
          stage('DefectDojo'){
              steps{
-        sh '''curl -X \'POST\' \\
+        sh '''curl -k -X \'POST\' \\
   \'https://localhost:8443/api/v2/reimport-scan/\' \\
   -H \'accept: application/json\' \\
   -H \'Authorization: Token $defectdojo_token\' \\
