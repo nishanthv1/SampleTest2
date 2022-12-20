@@ -44,7 +44,7 @@ pipeline {
         sh '''curl -k -X \'POST\' \\
   \'https://localhost:8443/api/v2/reimport-scan/\' \\
   -H \'accept: application/json\' \\
-  -H \'Authorization: Token $defectdojo_token\' \\
+  -H \'Authorization: Token 00858f456b56bb4c16f7be481e3e5cd5ed4b5aaa\' \\
   -H \'Content-Type: multipart/form-data\' \\
   -F \'test=1\' \\
   -F \'@file=bandit.json;type=application/json\' \\
