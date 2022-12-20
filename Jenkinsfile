@@ -38,6 +38,19 @@ pipeline {
       }
             } 
   }
+         stage('DefectDojo'){
+             steps{
+        sh '''curl -X \'POST\' \\
+  \'http://localhost:8080/api/v2/reimport-scan/\' \\
+  -H \'accept: application/json\' \\
+  -H \'Authorization: Token $defectdojo_token\' \\
+  -H \'Content-Type: multipart/form-data\' \\
+  -F \'test=1\' \\
+  -F \'@file=bandit.json;type=application/json\' \\
+  -F \'scan_type=Badnit JSON Report\' \\
+  -F \'tags=test\' \\'''
+             }
+         }
         
          
 //         stage('PMD'){
