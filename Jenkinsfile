@@ -5,6 +5,7 @@ pipeline {
 
         SEMGREP_APP_TOKEN = credentials('secret_key')
         SEMGREP_PR_ID = "${env.CHANGE_ID}"
+        DEFECTDOJO_TOKEN= credentials('defectdojo_token')
 
       //  SEMGREP_TIMEOUT = "300"
     }
@@ -41,7 +42,7 @@ pipeline {
          stage('DefectDojo'){
              steps{
         sh '''curl -X \'POST\' \\
-  \'http://localhost:8080/api/v2/reimport-scan/\' \\
+  \'http://localhost:8443/api/v2/reimport-scan/\' \\
   -H \'accept: application/json\' \\
   -H \'Authorization: Token $defectdojo_token\' \\
   -H \'Content-Type: multipart/form-data\' \\
