@@ -41,15 +41,15 @@ pipeline {
 //   }
          stage('DefectDojo'){
              steps{
-        sh '''curl -k -X \'POST\' \\
-  \'https://10.20.1.16:8443/api/v2/reimport-scan/' \\
-  -H \'accept: application/json' \\
-  -H \'Authorization: Token 00858f456b56bb4c16f7be481e3e5cd5ed4b5aaa' \\
-  -H \'Content-Type: multipart/form-data' \\
-  -F \'test=1' \\
-  -F \'file=@banditResult.json;type=application/json' \\
-  -F \'scan_type=Bandit Scan' \\
-  -F \'tags=test' \\'''
+        sh '''curl -k -X 'POST' \\
+  'https://10.20.1.16:8443/api/v2/reimport-scan/' \\
+  -H 'accept: application/json' \\
+  -H 'Authorization: Token 00858f456b56bb4c16f7be481e3e5cd5ed4b5aaa' \\
+  -H 'Content-Type: multipart/form-data' \\
+  -F 'test=1' \\
+  -F 'file=@banditResult.json;type=application/json' \\
+  -F 'scan_type=Bandit Scan' \\
+  -F 'tags=test' \\'''
              }
          }
         
