@@ -72,7 +72,7 @@ pipeline {
   -H 'Authorization: Token 00858f456b56bb4c16f7be481e3e5cd5ed4b5aaa' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=5' \\
-  -F 'file=@trivyreportjson;type=application/json' \\
+  -F 'file=@trivyreport.json;type=application/json' \\
   -F 'scan_type=Trivy Scan' \\
   -F 'tags=SampleT1' '''
              }
