@@ -5,7 +5,7 @@ pipeline {
 
         SEMGREP_APP_TOKEN = credentials('secret_key')
         SEMGREP_PR_ID = "${env.CHANGE_ID}"
-        DEFECTDOJO_TOKEN= credentials('defectdojo_token')
+
 
       //  SEMGREP_TIMEOUT = "300"
     }
