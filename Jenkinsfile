@@ -75,6 +75,16 @@ pipeline {
   -F 'file=@trivyreport.json;type=application/json' \\
   -F 'scan_type=Trivy Scan' \\
   -F 'tags=SampleT1' '''
+                 
+                 sh '''curl -k -X 'POST' \\
+  'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
+  -H 'accept: application/json' \\
+  -H 'Authorization: Token becfdf6ea0a24a5c36a906e87947c074db74bbbb' \\
+  -H 'Content-Type: multipart/form-data' \\
+  -F 'test=5' \\
+  -F 'file=@test.html;type=application/json' \\
+  -F 'scan_type=Wapiti Scan' \\
+  -F 'tags=SampleT1' '''
              }
          }
         
