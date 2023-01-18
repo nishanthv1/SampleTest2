@@ -51,7 +51,7 @@ pipeline {
   -H 'accept: application/json' \\
   -H 'Authorization: Token 00858f456b56bb4c16f7be481e3e5cd5ed4b5aaa' \\
   -H 'Content-Type: multipart/form-data' \\
-  -F 'test=4' \\
+  -F 'test=1' \\
   -F 'file=@banditResult.json;type=application/json' \\
   -F 'scan_type=Bandit Scan' \\
   -F 'tags=SampleB1' '''
@@ -61,7 +61,7 @@ pipeline {
   -H 'accept: application/json' \\
   -H 'Authorization: Token becfdf6ea0a24a5c36a906e87947c074db74bbbb' \\
   -H 'Content-Type: multipart/form-data' \\
-  -F 'test=3' \\
+  -F 'test=4' \\
   -F 'file=@dependency-check-report.xml;type=application/json' \\
   -F 'scan_type=Dependency Check Scan' \\
   -F 'tags=SampleD1' '''
@@ -71,7 +71,7 @@ pipeline {
   -H 'accept: application/json' \\
   -H 'Authorization: Token becfdf6ea0a24a5c36a906e87947c074db74bbbb' \\
   -H 'Content-Type: multipart/form-data' \\
-  -F 'test=5' \\
+  -F 'test=2' \\
   -F 'file=@trivyreport.json;type=application/json' \\
   -F 'scan_type=Trivy Scan' \\
   -F 'tags=SampleT1' '''
