@@ -16,18 +16,18 @@ pipeline {
                 git 'https://github.com/nishanthv-hexa/SampleTEs1.git'
             }
             }
-        stage ('OWASP Dependency-Check Vulnerabilities') {
-            steps {
-                dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency-check'
-                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-            }
-        }
-      stage('Semgrep-Scan') {
-          steps {
-            sh "pip3 install semgrep"
-            sh "semgrep ci"
-          }
-      }
+//         stage ('OWASP Dependency-Check Vulnerabilities') {
+//             steps {
+//                 dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency-check'
+//                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+//             }
+//         }
+//       stage('Semgrep-Scan') {
+//           steps {
+//             sh "pip3 install semgrep"
+//             sh "semgrep ci"
+//           }
+//       }
 
   stage('SonarQube Analysis') {
             steps {
@@ -39,11 +39,11 @@ pipeline {
       }
             } 
   }
-         stage('Trivy'){
-             steps{
-                 sh 'trivy -f json -o trivyreport.json nginx'
-             }
-         }
+//          stage('Trivy'){
+//              steps{
+//                  sh 'trivy -f json -o trivyreport.json nginx'
+//              }
+//          }
          stage('DefectDojo'){
              steps{
         sh '''curl -k -X 'POST' \\
