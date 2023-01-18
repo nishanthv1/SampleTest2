@@ -16,12 +16,12 @@ pipeline {
                 git 'https://github.com/nishanthv-hexa/SampleTEs1.git'
             }
             }
-//         stage ('OWASP Dependency-Check Vulnerabilities') {
-//             steps {
-//                 dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Owasp dependency Check'
-//                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-//             }
-//         }
+        stage ('OWASP Dependency-Check Vulnerabilities') {
+            steps {
+                dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Owasp dependency Check'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
       stage('Semgrep-Scan') {
           steps {
             sh "pip3 install semgrep"
