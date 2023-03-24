@@ -29,16 +29,23 @@ pipeline {
 //           }
 //       }
 
-  stage('SonarQube Analysis') {
-            steps {
-                script{
-    def scannerHome = tool 'Sonarscanner'; 
-                withSonarQubeEnv('Sonarqube') {
-      sh "${scannerHome}/bin/sonar-scanner"
-    }
-      }
-            } 
-  }
+//   stage('SonarQube Analysis') {
+//             steps {
+//                 script{
+//     def scannerHome = tool 'Sonarscanner'; 
+//                 withSonarQubeEnv('Sonarqube') {
+//       sh "${scannerHome}/bin/sonar-scanner"
+//     }
+//       }
+//             } 
+//   }
+         
+           stage('ZAP'){
+             steps{
+             sh"docker run -v $(pwd):/zap/wrk/:rw owasp/zap2docker-stable zap-full-scan.py -t http://65.1.92.95:3000/atop/dashboard -n Atop.context -U admin -z "-config script.scripts.name=Atop.js -config script.scripts.enabled=true -config script.scripts.file="Atop.js""
+"
+             }
+         }
 //          stage('Trivy'){
 //              steps{
 //                  sh 'trivy -f json -o trivyreport.json nginx'
