@@ -41,7 +41,7 @@ pipeline {
          
            stage('ZAP'){
              steps{
-             sh 'docker run -v $(pwd):/zap/wrk/:rw owasp/zap2docker-stable zap-full-scan.py -t https://juice-shop.herokuapp.com/#/ -r /var/lib/jenkins/workspace/SampleTest2/test.html'
+             sh 'docker run -v $(pwd):/zap/wrk/:rw owasp/zap2docker-stable zap-full-scan.py -m 1 -t https://juice-shop.herokuapp.com/#/ -r /var/lib/jenkins/workspace/SampleTest2/test.html'
              }
          }
          stage('Trivy'){
