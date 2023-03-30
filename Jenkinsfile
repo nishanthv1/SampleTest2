@@ -28,16 +28,16 @@ pipeline {
           }
       }
 
-  stage('SonarQube Analysis') {
-            steps {
-                script{
-    def scannerHome = tool 'Sonarscanner'; 
-                withSonarQubeEnv('Sonarqube') {
-      sh "${scannerHome}/bin/sonar-scanner"
-    }
-      }
-            } 
-  }
+//   stage('SonarQube Analysis') {
+//             steps {
+//                 script{
+//     def scannerHome = tool 'Sonarscanner'; 
+//                 withSonarQubeEnv('Sonarqube') {
+//       sh "${scannerHome}/bin/sonar-scanner"
+//     }
+//       }
+//             } 
+//   }
          
            stage('ZAP'){
              steps{
