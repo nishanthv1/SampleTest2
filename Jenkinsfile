@@ -1,14 +1,13 @@
 pipeline {
     agent any
-//   environment {
-//       // SEMGREP_BASELINE_REF = ""
+  environment {
+       SEMGREP_BASELINE_REF = ""
+       SEMGREP_APP_TOKEN = credentials('secret_key')
+       SEMGREP_PR_ID = "${env.CHANGE_ID}"
 
-//       //  SEMGREP_APP_TOKEN = credentials('secret_key')
-//        // SEMGREP_PR_ID = "${env.CHANGE_ID}"
 
-
-//       //  SEMGREP_TIMEOUT = "300"
-//     }
+      //  SEMGREP_TIMEOUT = "300"
+    }
 
      stages {
         stage('Build') {
@@ -16,40 +15,40 @@ pipeline {
                 git 'https://github.com/nishanthv-hexa/SampleTest2.git'
             }
             }
-//         stage ('OWASP Dependency-Check Vulnerabilities') {
-//             steps {
-//                 dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency-check'
-//                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-//             }
-//         }
-//       stage('Semgrep-Scan') {
-//           steps {
-//             sh "pip3 install semgrep"
-//             sh "semgrep ci"
-//           }
-//       }
+        stage ('OWASP Dependency-Check Vulnerabilities') {
+            steps {
+                dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency-check'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
+      stage('Semgrep-Scan') {
+          steps {
+            sh "pip3 install semgrep"
+            sh "semgrep ci"
+          }
+      }
 
-//   stage('SonarQube Analysis') {
-//             steps {
-//                 script{
-//     def scannerHome = tool 'Sonarscanner'; 
-//                 withSonarQubeEnv('Sonarqube') {
-//       sh "${scannerHome}/bin/sonar-scanner"
-//     }
-//       }
-//             } 
-//   }
+  stage('SonarQube Analysis') {
+            steps {
+                script{
+    def scannerHome = tool 'Sonarscanner'; 
+                withSonarQubeEnv('Sonarqube') {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+      }
+            } 
+  }
          
            stage('ZAP'){
              steps{
              sh 'docker run -v $(pwd):/zap/wrk/:rw owasp/zap2docker-stable zap-full-scan.py -t http://testphp.vulnweb.com/ -r test.html'
              }
          }
-//          stage('Trivy'){
-//              steps{
-//                  sh 'trivy -f json -o trivyreport.json nginx'
-//              }
-//          }
+         stage('Trivy'){
+             steps{
+                 sh 'trivy -f json -o trivyreport.json nginx'
+             }
+         }
          stage('DefectDojo'){
              steps{
         sh '''curl -k -X 'POST' \\
