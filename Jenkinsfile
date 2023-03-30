@@ -13,7 +13,7 @@ pipeline {
      stages {
         stage('Build') {
             steps {
-                git 'https://github.com/nishanthv-hexa/SampleTEs1.git'
+                git 'https://github.com/nishanthv-hexa/SampleTest2.git'
             }
             }
 //         stage ('OWASP Dependency-Check Vulnerabilities') {
