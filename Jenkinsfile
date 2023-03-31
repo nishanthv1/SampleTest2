@@ -15,18 +15,18 @@ pipeline {
                 git 'https://github.com/nishanthv-hexa/SampleTest2.git'
             }
             }
-        stage ('OWASP Dependency-Check Vulnerabilities') {
-            steps {
-                dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
-                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-            }
-        }
-      stage('Semgrep-Scan') {
-          steps {
-            sh "pip3 install semgrep"
-            sh "semgrep ci"
-          }
-      }
+//         stage ('OWASP Dependency-Check Vulnerabilities') {
+//             steps {
+//                 dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
+//                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+//             }
+//         }
+//       stage('Semgrep-Scan') {
+//           steps {
+//             sh "pip3 install semgrep"
+//             sh "semgrep ci"
+//           }
+//       }
 
 //   stage('SonarQube Analysis') {
 //             steps {
@@ -39,16 +39,16 @@ pipeline {
 //             } 
 //   }
          
-           stage('ZAP'){
-             steps{
-             sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t https://juice-shop.herokuapp.com/#/ -r jenkinstest.html'
-             }
-         }
-         stage('Trivy'){
-             steps{
-                 sh 'trivy -f json -o trivyreport.json nginx'
-             }
-         }
+//            stage('ZAP'){
+//              steps{
+//              sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t https://juice-shop.herokuapp.com/#/ -r jenkinstest.html'
+//              }
+//          }
+//          stage('Trivy'){
+//              steps{
+//                  sh 'trivy -f json -o trivyreport.json nginx'
+//              }
+//          }
          stage('DefectDojo'){
              steps{
         sh '''curl -k -X 'POST' \\
@@ -81,14 +81,24 @@ pipeline {
   -F 'scan_type=Trivy Scan' \\
   -F 'tags=SampleT1' '''
                  
-                 sh '''curl -k -X 'POST' \\
+//                  sh '''curl -k -X 'POST' \\
+//   'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
+//   -H 'accept: application/json' \\
+//   -H 'Authorization: Token becfdf6ea0a24a5c36a906e87947c074db74bbbb' \\
+//   -H 'Content-Type: multipart/form-data' \\
+//   -F 'test=5' \\
+//   -F 'file=@test.html;type=application/json' \\
+//   -F 'scan_type=Wapiti Scan' \\
+//   -F 'tags=SampleT1' '''
+                 
+                                  sh '''curl -k -X 'POST' \\
   'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
   -H 'accept: application/json' \\
   -H 'Authorization: Token becfdf6ea0a24a5c36a906e87947c074db74bbbb' \\
   -H 'Content-Type: multipart/form-data' \\
-  -F 'test=5' \\
-  -F 'file=@test.html;type=application/json' \\
-  -F 'scan_type=Wapiti Scan' \\
+  -F 'test=6' \\
+  -F 'file=@/kali/home/jenkinstest.html;type=application/json' \\
+  -F 'scan_type=Zap Scan' \\
   -F 'tags=SampleT1' '''
              }
          }
