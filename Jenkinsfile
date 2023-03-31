@@ -99,7 +99,7 @@ pipeline {
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=6' \\
   -F 'file=@jenkinstest.html;type=application/json' \\
-  -F 'scan_type=Zap Scan' \\
+  -F 'scan_type=ZAP Scan' \\
   -F 'tags=SampleT1' '''
              }
          }
