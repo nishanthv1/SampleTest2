@@ -97,7 +97,7 @@ pipeline {
   -H 'Authorization: Token becfdf6ea0a24a5c36a906e87947c074db74bbbb' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=6' \\
-  -F 'file=@/kali/home/jenkinstest.html;type=application/json' \\
+  -F 'file=@kali/home/jenkinstest.html;type=application/json' \\
   -F 'scan_type=Zap Scan' \\
   -F 'tags=SampleT1' '''
              }
