@@ -39,12 +39,12 @@ pipeline {
 //             } 
 //   }
          
-           stage('ZAP'){
-               steps {
-             sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t https://juice-shop.herokuapp.com/#/ -r jenkinstest.html || true'
-             sh 'cp jenkinstest.html /var/lib/jenkins/workspace/SampleTest2/ || true'
-             }
-         }
+//            stage('ZAP'){
+//                steps {
+//              sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t https://juice-shop.herokuapp.com/#/ -r jenkinstest.html || true'
+//              sh 'cp jenkinstest.html /var/lib/jenkins/workspace/SampleTest2/ || true'
+//              }
+//          }
 //          stage('Trivy'){
 //              steps{
 //                  sh 'trivy -f json -o trivyreport.json nginx'
