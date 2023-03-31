@@ -95,7 +95,7 @@ pipeline {
                                   sh '''curl -k -X 'POST' \\
   'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
   -H 'accept: application/json' \\
-  -H 'Authorization: Token becfdf6ea0a24a5c36a906e87947c074db74bbbb' \\
+  -H 'Authorization: Token  1ea88f7e80680bb1edc9458668c394379be2bbad' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=6' \\
   -F 'file=@jenkinstest.html;type=application/json' \\
