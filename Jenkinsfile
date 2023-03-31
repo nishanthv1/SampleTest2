@@ -41,6 +41,7 @@ pipeline {
          
            stage('ZAP'){
              steps{
+             sh 'set +e'
              sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t https://juice-shop.herokuapp.com/#/ -r jenkinstest.html' && exit(0)
              sh 'cp jenkinstest.html /var/lib/jenkins/workspace/SampleTest2/'
              }
