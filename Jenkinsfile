@@ -98,7 +98,7 @@ pipeline {
   -H 'Authorization: Token  1ea88f7e80680bb1edc9458668c394379be2bbad' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=7' \\
-  -F 'file=@jenkinstest.html;type=application/json' \\
+  -F 'file=@jenkinstest.json;type=application/json' \\
   -F 'scan_type=ZAP Scan' \\
   -F 'tags=SampleT1' '''
              }
