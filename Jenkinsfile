@@ -39,12 +39,12 @@ pipeline {
 //             } 
 //   }
          
-//            stage('ZAP'){
-//                steps {
-//              sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t https://juice-shop.herokuapp.com/#/ -x jenkinstest.xml || true'
-//              sh 'cp jenkinstest.xml /var/lib/jenkins/workspace/SampleTest2/ || true'
-//              }
-//          }
+           stage('ZAP'){
+               steps {
+             sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t https://juice-shop.herokuapp.com/#/ -x jenkinstest.xml || true'
+             sh 'cp jenkinstest.xml /var/lib/jenkins/workspace/SampleTest2/ || true'
+             }
+         }
 //          stage('Trivy'){
 //              steps{
 //                  sh 'trivy -f json -o trivyreport.json nginx'
@@ -98,7 +98,7 @@ pipeline {
   -H 'Authorization: Token  1ea88f7e80680bb1edc9458668c394379be2bbad' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=6' \\
-  -F 'file=@jenkinstest.json;type=application/json' \\
+  -F 'file=@jenkinstest.xml;type=application/json' \\
   -F 'scan_type=ZAP Scan' \\
   -F 'tags=SampleT1' '''
              }
