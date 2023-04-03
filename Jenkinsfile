@@ -41,8 +41,8 @@ pipeline {
          
 //            stage('ZAP'){
 //                steps {
-//              sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t https://juice-shop.herokuapp.com/#/ -J jenkinstest.json || true'
-//              sh 'cp jenkinstest.json /var/lib/jenkins/workspace/SampleTest2/ || true'
+//              sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t https://juice-shop.herokuapp.com/#/ -x jenkinstest.xml || true'
+//              sh 'cp jenkinstest.xml /var/lib/jenkins/workspace/SampleTest2/ || true'
 //              }
 //          }
 //          stage('Trivy'){
