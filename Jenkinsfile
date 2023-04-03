@@ -42,7 +42,7 @@ pipeline {
            stage('ZAP'){
                steps {
              sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t https://juice-shop.herokuapp.com/#/ -x jenkinstest.xml || true'
-             sh 'cp jenkinstest.xml /var/lib/jenkins/workspace/SampleTest2/ || true'
+             sh 'cp /home/kali/jenkinstest.xml /var/lib/jenkins/workspace/SampleTest2/ || true'
              }
          }
 //          stage('Trivy'){
