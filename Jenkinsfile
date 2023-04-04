@@ -77,7 +77,7 @@ pipeline {
   -H 'accept: application/json' \\
   -H 'Authorization: Token becfdf6ea0a24a5c36a906e87947c074db74bbbb' \\
   -H 'Content-Type: multipart/form-data' \\
-  -F 'test=2' \\
+  -F 'test=3' \\
   -F 'file=@trivyreport.json;type=application/json' \\
   -F 'scan_type=Trivy Scan' \\
   -F 'tags=SampleT1' '''
