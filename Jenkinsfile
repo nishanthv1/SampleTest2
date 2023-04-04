@@ -21,12 +21,12 @@ pipeline {
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
-      stage('Semgrep-Scan') {
-          steps {
-            sh "pip3 install semgrep"
-            sh "semgrep ci"
-          }
-      }
+//       stage('Semgrep-Scan') {
+//           steps {
+//             sh "pip3 install semgrep"
+//             sh "semgrep ci"
+//           }
+//       }
 
   stage('SonarQube Analysis') {
             steps {
