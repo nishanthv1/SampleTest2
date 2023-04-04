@@ -15,29 +15,29 @@ pipeline {
                 git 'https://github.com/nishanthv-hexa/SampleTest2.git'
             }
             }
-//         stage ('OWASP Dependency-Check Vulnerabilities') {
-//             steps {
-//                 dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
-//                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-//             }
-//         }
-//       stage('Semgrep-Scan') {
-//           steps {
-//             sh "pip3 install semgrep"
-//             sh "semgrep ci"
-//           }
-//       }
+        stage ('OWASP Dependency-Check Vulnerabilities') {
+            steps {
+                dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
+      stage('Semgrep-Scan') {
+          steps {
+            sh "pip3 install semgrep"
+            sh "semgrep ci"
+          }
+      }
 
-//   stage('SonarQube Analysis') {
-//             steps {
-//                 script{
-//     def scannerHome = tool 'Sonarscanner'; 
-//                 withSonarQubeEnv('Sonarqube') {
-//       sh "${scannerHome}/bin/sonar-scanner"
-//     }
-//       }
-//             } 
-//   }
+  stage('SonarQube Analysis') {
+            steps {
+                script{
+    def scannerHome = tool 'Sonarscanner'; 
+                withSonarQubeEnv('Sonarqube') {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+      }
+            } 
+  }
          
            stage('ZAP'){
                steps {
@@ -45,11 +45,11 @@ pipeline {
              sh 'sudo cp /home/kali/vulnweb.xml /var/lib/jenkins/workspace/SampleTest2/ || true'
              }
          }
-//          stage('Trivy'){
-//              steps{
-//                  sh 'trivy -f json -o trivyreport.json nginx'
-//              }
-//          }
+         stage('Trivy'){
+             steps{
+                 sh 'trivy -f json -o trivyreport.json nginx'
+             }
+         }
          stage('DefectDojo'){
              steps{
         sh '''curl -k -X 'POST' \\
@@ -72,15 +72,15 @@ pipeline {
   -F 'scan_type=Dependency Check Scan' \\
   -F 'tags=SampleD1' '''
                  
-//                  sh '''curl -k -X 'POST' \\
-//   'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
-//   -H 'accept: application/json' \\
-//   -H 'Authorization: Token becfdf6ea0a24a5c36a906e87947c074db74bbbb' \\
-//   -H 'Content-Type: multipart/form-data' \\
-//   -F 'test=2' \\
-//   -F 'file=@trivyreport.json;type=application/json' \\
-//   -F 'scan_type=Trivy Scan' \\
-//   -F 'tags=SampleT1' '''
+                 sh '''curl -k -X 'POST' \\
+  'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
+  -H 'accept: application/json' \\
+  -H 'Authorization: Token becfdf6ea0a24a5c36a906e87947c074db74bbbb' \\
+  -H 'Content-Type: multipart/form-data' \\
+  -F 'test=2' \\
+  -F 'file=@trivyreport.json;type=application/json' \\
+  -F 'scan_type=Trivy Scan' \\
+  -F 'tags=SampleT1' '''
                  
 //                  sh '''curl -k -X 'POST' \\
 //   'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
