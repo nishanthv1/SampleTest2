@@ -47,7 +47,7 @@ pipeline {
          }
          stage('Trivy'){
              steps{
-                 sh 'trivy -f json -o trivyreport.json nginx'
+                 sh 'trivy image nginx -f json -o trivyreport.json '
              }
          }
          stage('DefectDojo'){
