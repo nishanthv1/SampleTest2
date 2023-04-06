@@ -15,12 +15,12 @@ pipeline {
                 git 'https://github.com/nishanthv-hexa/SampleTest2.git'
             }
             }
-        stage ('OWASP Dependency-Check Vulnerabilities') {
-            steps {
-                dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
-                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-            }
-        }
+//         stage ('OWASP Dependency-Check Vulnerabilities') {
+//             steps {
+//                 dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
+//                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+//             }
+//         }
 //       stage('Semgrep-Scan') {
 //           steps {
 //             sh "pip3 install semgrep"
@@ -28,16 +28,16 @@ pipeline {
 //           }
 //       }
 
-  stage('SonarQube Analysis') {
-            steps {
-                script{
-    def scannerHome = tool 'Sonarscanner'; 
-                withSonarQubeEnv('Sonarscanner') {
-      sh "${scannerHome}/bin/sonar-scanner"
-    }
-      }
-            } 
-  }
+//   stage('SonarQube Analysis') {
+//             steps {
+//                 script{
+//     def scannerHome = tool 'Sonarscanner'; 
+//                 withSonarQubeEnv('Sonarscanner') {
+//       sh "${scannerHome}/bin/sonar-scanner"
+//     }
+//       }
+//             } 
+//   }
          
            stage('ZAP'){
                steps {
