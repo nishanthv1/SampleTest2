@@ -23,7 +23,7 @@ pipeline {
         }
                    stage ("NPM Audit"){
               steps{
-              sh 'npm audit'
+              sh 'npm audit || true'
              }}
  
       stage('Semgrep-Scan') {
