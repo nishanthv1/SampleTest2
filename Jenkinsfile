@@ -45,7 +45,7 @@ pipeline {
   }
          stage ("bandit"){
             steps {
-                 sh 'bandit -r /var/lib/jenkins/workspace/SampleTest1 -f json -o /var/lib/jenkins/workspace/SampleTest1/bandiresult.json'
+                 sh 'bandit -r /var/lib/jenkins/workspace/SampleTest2 -f json -o /var/lib/jenkins/workspace/SampleTest2/bandiresult.json'
              }}
 
          
