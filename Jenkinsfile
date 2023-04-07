@@ -45,7 +45,7 @@ pipeline {
   }
          stage ("bandit"){
             steps {
-                 sh 'bandit -r /var/lib/jenkins/workspace/SampleTest1 -f json -o /home/azureuser/archerysec-cli//banditResult.json'
+                 sh 'bandit -r /var/lib/jenkins/workspace/SampleTest1 -f json -o /home/azureuser/archerysec-cli/banditResult.json'
              }}
 
          
