@@ -15,29 +15,39 @@ pipeline {
                 git 'https://github.com/nishanthv-hexa/SampleTest2.git'
             }
             }
-//         stage ('OWASP Dependency-Check Vulnerabilities') {
-//             steps {
-//                 dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
-//                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-//             }
-//         }
-//       stage('Semgrep-Scan') {
-//           steps {
-//             sh "pip3 install semgrep"
-//             sh "semgrep ci"
-//           }
-//       }
+        stage ('OWASP Dependency-Check Vulnerabilities') {
+            steps {
+                dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
+                   stage ("NPM Audit"){
+              steps{
+              sh 'npm audit'
+             }}
+ 
+      stage('Semgrep-Scan') {
+          steps {
+            sh "pip3 install semgrep"
+            sh "semgrep ci"
+          }
+      }
 
-//   stage('SonarQube Analysis') {
-//             steps {
-//                 script{
-//     def scannerHome = tool 'Sonarscanner'; 
-//                 withSonarQubeEnv('Sonarscanner') {
-//       sh "${scannerHome}/bin/sonar-scanner"
-//     }
-//       }
-//             } 
-//   }
+  stage('SonarQube Analysis') {
+            steps {
+                script{
+    def scannerHome = tool 'Sonarscanner'; 
+                withSonarQubeEnv('Sonarscanner') {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+      }
+            } 
+  }
+         stage ("bandit"){
+            steps {
+                 sh 'bandit -r /var/lib/jenkins/workspace/SampleTest1 -f json -o /home/azureuser/archerysec-cli//banditResult.json'
+             }}
+
          
            stage('ZAP'){
                steps {
@@ -108,14 +118,6 @@ pipeline {
 //         stage('PMD'){
 //             steps{
 //             sh 'pmd -d -f txt -r rulesets/java/quickstart.xml -reportfile report.txt'}}
-//         stage ("bandit"){
-//            steps {
-//                 sh 'bandit -r /var/lib/jenkins/workspace/SampleTest1 -f json -o /home/azureuser/archerysec-cli//banditResult.json'
-//             }}
-//          stage ("NPM Audit"){
-//              steps{
-//              sh 'npm audit'
-//              }}
-     }
+
 }
  
