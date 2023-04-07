@@ -10,56 +10,56 @@ pipeline {
     }
 
      stages {
-        stage('Build') {
-            steps {
-                git 'https://github.com/nishanthv-hexa/SampleTest2.git'
-            }
-            }
-        stage ('OWASP Dependency-Check Vulnerabilities') {
-            steps {
-                dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
-                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-            }
-        }
-                   stage ("NPM Audit"){
-              steps{
-              sh 'npm audit || true'
-             }}
+//         stage('Build') {
+//             steps {
+//                 git 'https://github.com/nishanthv-hexa/SampleTest2.git'
+//             }
+//             }
+//         stage ('OWASP Dependency-Check Vulnerabilities') {
+//             steps {
+//                 dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
+//                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+//             }
+//         }
+//                    stage ("NPM Audit"){
+//               steps{
+//               sh 'npm audit || true'
+//              }}
  
-      stage('Semgrep-Scan') {
-          steps {
-            sh "pip3 install semgrep"
-            sh "semgrep ci"
-          }
-      }
+//       stage('Semgrep-Scan') {
+//           steps {
+//             sh "pip3 install semgrep"
+//             sh "semgrep ci"
+//           }
+//       }
 
-  stage('SonarQube Analysis') {
-            steps {
-                script{
-    def scannerHome = tool 'Sonarscanner'; 
-                withSonarQubeEnv('Sonarscanner') {
-      sh "${scannerHome}/bin/sonar-scanner"
-    }
-      }
-            } 
-  }
-         stage ("bandit"){
-            steps {
-                 sh 'bandit -r /var/lib/jenkins/workspace/SampleTest2 -f json -o /var/lib/jenkins/workspace/SampleTest2/bandiresult.json'
-             }}
+//   stage('SonarQube Analysis') {
+//             steps {
+//                 script{
+//     def scannerHome = tool 'Sonarscanner'; 
+//                 withSonarQubeEnv('Sonarscanner') {
+//       sh "${scannerHome}/bin/sonar-scanner"
+//     }
+//       }
+//             } 
+//   }
+//          stage ("bandit"){
+//             steps {
+//                  sh 'bandit -r /var/lib/jenkins/workspace/SampleTest2 -f json -o /var/lib/jenkins/workspace/SampleTest2/bandiresult.json'
+//              }}
 
          
-           stage('ZAP'){
-               steps {
-              sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t http://testphp.vulnweb.com/index.php -n Vulnweb.context -x vulnweb.xml || true'
-             sh 'sudo cp /home/kali/vulnweb.xml /var/lib/jenkins/workspace/SampleTest2/ || true'
-             }
-         }
-         stage('Trivy'){
-             steps{
-                 sh 'trivy image nginx -f json -o trivyreport.json '
-             }
-         }
+//            stage('ZAP'){
+//                steps {
+//               sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t http://testphp.vulnweb.com/index.php -n Vulnweb.context -x vulnweb.xml || true'
+//              sh 'sudo cp /home/kali/vulnweb.xml /var/lib/jenkins/workspace/SampleTest2/ || true'
+//              }
+//          }
+//          stage('Trivy'){
+//              steps{
+//                  sh 'trivy image nginx -f json -o trivyreport.json '
+//              }
+//          }
          stage('DefectDojo'){
              steps{
         sh '''curl -k -X 'POST' \\
