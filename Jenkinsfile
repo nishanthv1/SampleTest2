@@ -62,7 +62,7 @@ pipeline {
 //          }
          stage('DefectDojo'){
              steps{
-        sh '''sudo curl -k -X 'POST' \\
+        sh '''curl -k -X 'POST' \\
   'http://127.0.0.1:8080/api/v2/reimport-scan/' \\
   -H 'accept: application/json' \\
   -H 'Authorization: Token 0ad6e9239bb9dafc5b8c8850f009139ef1230e' \\
