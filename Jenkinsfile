@@ -33,16 +33,16 @@ pipeline {
           }
       }
 
-  stage('SonarQube Analysis') {
-            steps {
-                script{
-    def scannerHome = tool 'Sonarscanner'; 
-                withSonarQubeEnv('Sonarscanner') {
-      sh "${scannerHome}/bin/sonar-scanner"
-    }
-      }
-            } 
-  }
+//   stage('SonarQube Analysis') {
+//             steps {
+//                 script{
+//     def scannerHome = tool 'Sonarscanner'; 
+//                 withSonarQubeEnv('Sonarscanner') {
+//       sh "${scannerHome}/bin/sonar-scanner"
+//     }
+//       }
+//             } 
+//   }
          stage ("bandit"){
             steps {
                  sh 'bandit -r /var/lib/jenkins/workspace/SampleTest2 -f json -o /var/lib/jenkins/workspace/SampleTest2/bandiresult.json'
