@@ -68,7 +68,7 @@ pipeline {
   -H 'Authorization: Token 0ad6e9239bb9dafc5b8c8850f009139ef1230e' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=1' \\
-  -F 'file=@bandit2result.json;type=application/json' \\
+  -F 'file=@banditresult.json;type=application/json' \\
   -F 'scan_type=Bandit Scan' \\
   -F 'tags=SampleB1' '''
                  
