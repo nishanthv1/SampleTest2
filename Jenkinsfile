@@ -10,43 +10,43 @@ pipeline {
     }
 
      stages {
-//         stage('Build') {
-//             steps {
-//                 git 'https://github.com/nishanthv-hexa/SampleTest2.git'
-//             }
-//             }
-//         stage ('OWASP Dependency-Check Vulnerabilities') {
-//             steps {
-//                 dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
-//                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-//             }
-//         }
-//                    stage ("NPM Audit"){
-//               steps{
-//               sh 'npm audit || true'
-//              }}
+        stage('Build') {
+            steps {
+                git 'https://github.com/nishanthv-hexa/SampleTest2.git'
+            }
+            }
+        stage ('OWASP Dependency-Check Vulnerabilities') {
+            steps {
+                dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
+                   stage ("NPM Audit"){
+              steps{
+              sh 'npm audit || true'
+             }}
  
-//       stage('Semgrep-Scan') {
-//           steps {
-//             sh "pip3 install semgrep"
-//             sh "semgrep ci"
-//           }
-//       }
+      stage('Semgrep-Scan') {
+          steps {
+            sh "pip3 install semgrep"
+            sh "semgrep ci"
+          }
+      }
 
-//   stage('SonarQube Analysis') {
-//             steps {
-//                 script{
-//     def scannerHome = tool 'Sonarscanner'; 
-//                 withSonarQubeEnv('Sonarscanner') {
-//       sh "${scannerHome}/bin/sonar-scanner"
-//     }
-//       }
-//             } 
-//   }
-//          stage ("bandit"){
-//             steps {
-//                  sh 'bandit -r /var/lib/jenkins/workspace/SampleTest2 -f json -o /var/lib/jenkins/workspace/SampleTest2/bandiresult.json'
-//              }}
+  stage('SonarQube Analysis') {
+            steps {
+                script{
+    def scannerHome = tool 'Sonarscanner'; 
+                withSonarQubeEnv('Sonarscanner') {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+      }
+            } 
+  }
+         stage ("bandit"){
+            steps {
+                 sh 'bandit -r /var/lib/jenkins/workspace/SampleTest2 -f json -o /var/lib/jenkins/workspace/SampleTest2/bandiresult.json'
+             }}
 
          
 //            stage('ZAP'){
@@ -63,9 +63,9 @@ pipeline {
          stage('DefectDojo'){
              steps{
         sh '''sudo curl -k -X 'POST' \\
-  'http://127.0.0.1:8000/api/v2/reimport-scan/' \\
+  'http://127.0.0.1:8080/api/v2/reimport-scan/' \\
   -H 'accept: application/json' \\
-  -H 'Authorization: Token 87b0aa5f27332f15ee803c045e9e8fecfe39be7d' \\
+  -H 'Authorization: Token 0ad6e9239bb9dafc5b8c8850f009139ef1230e' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=1' \\
   -F 'file=@bandit2result.json;type=application/json' \\
@@ -75,7 +75,7 @@ pipeline {
                          sh '''curl -k -X 'POST' \\
   'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
   -H 'accept: application/json' \\
-  -H 'Authorization: Token becfdf6ea0a24a5c36a906e87947c074db74bbbb' \\
+  -H 'Authorization: Token 0ad6e9239bb9dafc5b8c8850f009139ef1230e' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=4' \\
   -F 'file=@dependency-check-report.xml;type=application/json' \\
