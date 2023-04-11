@@ -33,16 +33,16 @@ pipeline {
           }
       }
 
-//   stage('SonarQube Analysis') {
-//             steps {
-//                 script{
-//     def scannerHome = tool 'Sonarscanner'; 
-//                 withSonarQubeEnv('Sonarscanner') {
-//       sh "${scannerHome}/bin/sonar-scanner"
-//     }
-//       }
-//             } 
-//   }
+  stage('SonarQube Analysis') {
+            steps {
+                script{
+    def scannerHome = tool 'Sonarscanner'; 
+                withSonarQubeEnv('Sonarscanner') {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+      }
+            } 
+  }
          stage ("bandit"){
             steps {
                  sh 'bandit -r /var/lib/jenkins/workspace/SampleTest2 -f json -o /var/lib/jenkins/workspace/SampleTest2/bandiresult.json'
@@ -55,11 +55,11 @@ pipeline {
 //              sh 'sudo cp /home/kali/vulnweb.xml /var/lib/jenkins/workspace/SampleTest2/ || true'
 //              }
 //          }
-//          stage('Trivy'){
-//              steps{
-//                  sh 'trivy image nginx -f json -o trivyreport.json '
-//              }
-//          }
+         stage('Trivy'){
+             steps{
+                 sh 'trivy image nginx -f json -o trivyreport.json '
+             }
+         }
          stage('DefectDojo'){
              steps{
         sh '''curl -k -X 'POST' \\
@@ -73,19 +73,19 @@ pipeline {
   -F 'tags=SampleB1' '''
                  
                          sh '''curl -k -X 'POST' \\
-  'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
+  'http://127.0.0.1:8080/api/v2/reimport-scan/' \\
   -H 'accept: application/json' \\
   -H 'Authorization: Token 0ad6e9239bb9dafc5b8c8850f009139ef1230e' \\
   -H 'Content-Type: multipart/form-data' \\
-  -F 'test=4' \\
+  -F 'test=2' \\
   -F 'file=@dependency-check-report.xml;type=application/json' \\
   -F 'scan_type=Dependency Check Scan' \\
   -F 'tags=SampleD1' '''
                  
                  sh '''curl -k -X 'POST' \\
-  'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
+  'http://127.0.0.1:8080/api/v2/reimport-scan/' \\
   -H 'accept: application/json' \\
-  -H 'Authorization: Token becfdf6ea0a24a5c36a906e87947c074db74bbbb' \\
+  -H 'Authorization: Token 0ad6e9239bb9dafc5b8c8850f009139ef1230e' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=3' \\
   -F 'file=@trivyreport.json;type=application/json' \\
@@ -102,15 +102,15 @@ pipeline {
 //   -F 'scan_type=Wapiti Scan' \\
 //   -F 'tags=SampleT1' '''
                  
-                                  sh '''curl -k -X 'POST' \\
-  'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
-  -H 'accept: application/json' \\
-  -H 'Authorization: Token  1ea88f7e80680bb1edc9458668c394379be2bbad' \\
-  -H 'Content-Type: multipart/form-data' \\
-  -F 'test=6' \\
-  -F 'file=@vulnweb.xml;type=application/json' \\
-  -F 'scan_type=ZAP Scan' \\
-  -F 'tags=SampleT1' '''
+//                                   sh '''curl -k -X 'POST' \\
+//   'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
+//   -H 'accept: application/json' \\
+//   -H 'Authorization: Token  1ea88f7e80680bb1edc9458668c394379be2bbad' \\
+//   -H 'Content-Type: multipart/form-data' \\
+//   -F 'test=6' \\
+//   -F 'file=@vulnweb.xml;type=application/json' \\
+//   -F 'scan_type=ZAP Scan' \\
+//   -F 'tags=SampleT1' '''
              }
          }
         
