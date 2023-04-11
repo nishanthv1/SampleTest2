@@ -105,7 +105,7 @@ pipeline {
                                   sh '''curl -k -X 'POST' \\
   'http://127.0.0.1:8080/api/v2/reimport-scan/' \\
   -H 'accept: application/json' \\
-  -H 'Authorization: Token  4150cfe81cd330819c0ae7e18456f4b94b7e8d7' \\
+  -H 'Authorization: Token  4150cfe81cd330819c0ae7e18456f4b94b7e8d7a' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=4' \\
   -F 'file=@vulnweb2.xml;type=application/json' \\
