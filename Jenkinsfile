@@ -65,7 +65,7 @@ pipeline {
         sh '''curl -k -X 'POST' \\
   'http://127.0.0.1:8080/api/v2/reimport-scan/' \\
   -H 'accept: application/json' \\
-  -H 'Authorization: Token 0ad6e9239bb9dafc5b8c8850f009139ef1230e' \\
+  -H 'Authorization: Token 4150cfe81cd330819c0ae7e18456f4b94b7e8d7a' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=1' \\
   -F 'file=@bandiresult.json;type=application/json' \\
@@ -75,7 +75,7 @@ pipeline {
                          sh '''curl -k -X 'POST' \\
   'http://127.0.0.1:8080/api/v2/reimport-scan/' \\
   -H 'accept: application/json' \\
-  -H 'Authorization: Token 0ad6e9239bb9dafc5b8c8850f009139ef1230e' \\
+  -H 'Authorization: Token 4150cfe81cd330819c0ae7e18456f4b94b7e8d7a' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=2' \\
   -F 'file=@dependency-check-report.xml;type=application/json' \\
@@ -85,7 +85,7 @@ pipeline {
                  sh '''curl -k -X 'POST' \\
   'http://127.0.0.1:8080/api/v2/reimport-scan/' \\
   -H 'accept: application/json' \\
-  -H 'Authorization: Token 0ad6e9239bb9dafc5b8c8850f009139ef1230e' \\
+  -H 'Authorization: Token 4150cfe81cd330819c0ae7e18456f4b94b7e8d7a' \\
   -H 'Content-Type: multipart/form-data' \\
   -F 'test=3' \\
   -F 'file=@trivyreport.json;type=application/json' \\
