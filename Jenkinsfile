@@ -51,8 +51,8 @@ pipeline {
          
            stage('ZAP'){
                steps {
-              sh 'docker run -v $(pwd):/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t http://testphp.vulnweb.com/index.php -n Vulnweb.context -x vulnweb2.xml || true'
-             //sh 'sudo cp /home/hexa/vulnweb.xml /var/lib/jenkins/workspace/SampleTest2/ || true'
+              sh 'docker run -v /home/hexa:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t http://testphp.vulnweb.com/index.php -n Vulnweb.context -u test -x vulnweb2.xml || true'
+             sh 'sudo cp /home/hexa/vulnweb.xml /var/lib/jenkins/workspace/SampleTest2/ || true'
              }
          }
          stage('Trivy'){
@@ -102,15 +102,15 @@ pipeline {
 //   -F 'scan_type=Wapiti Scan' \\
 //   -F 'tags=SampleT1' '''
                  
-//                                   sh '''curl -k -X 'POST' \\
-//   'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
-//   -H 'accept: application/json' \\
-//   -H 'Authorization: Token  1ea88f7e80680bb1edc9458668c394379be2bbad' \\
-//   -H 'Content-Type: multipart/form-data' \\
-//   -F 'test=6' \\
-//   -F 'file=@vulnweb.xml;type=application/json' \\
-//   -F 'scan_type=ZAP Scan' \\
-//   -F 'tags=SampleT1' '''
+                                  sh '''curl -k -X 'POST' \\
+  'http://127.0.0.1:42003/api/v2/reimport-scan/' \\
+  -H 'accept: application/json' \\
+  -H 'Authorization: Token  4150cfe81cd330819c0ae7e18456f4b94b7e8d7' \\
+  -H 'Content-Type: multipart/form-data' \\
+  -F 'test=4' \\
+  -F 'file=@vulnweb2.xml;type=application/json' \\
+  -F 'scan_type=ZAP Scan' \\
+  -F 'tags=SampleT1' '''
              }
          }
         
