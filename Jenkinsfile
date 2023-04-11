@@ -51,7 +51,7 @@ pipeline {
          
            stage('ZAP'){
                steps {
-              sh 'docker run -v /home/kali:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t http://testphp.vulnweb.com/index.php -n Vulnweb.context -x vulnweb.xml || true'
+              sh 'docker run -v /home/hexa:/zap/wrk/:rw owasp/zap2docker-stable zap-baseline.py -m 1 -t http://testphp.vulnweb.com/index.php -n Vulnweb.context -x vulnweb.xml || true'
              sh 'sudo cp /home/kali/vulnweb.xml /var/lib/jenkins/workspace/SampleTest2/ || true'
              }
          }
