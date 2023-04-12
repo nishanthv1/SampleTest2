@@ -15,12 +15,12 @@ pipeline {
                 git 'https://github.com/nishanthv-hexa/SampleTest2.git'
             }
             }
-//         stage ('OWASP Dependency-Check Vulnerabilities') {
-//             steps {
-//                 dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
-//                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-//             }
-//         }
+        stage ('OWASP Dependency-Check Vulnerabilities') {
+            steps {
+                dependencyCheck additionalArguments: '--format HTML --format XML ', odcInstallation: 'Dependency check'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
                    stage ("NPM Audit"){
               steps{
               sh 'npm audit || true'
