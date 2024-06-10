@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  name: "Azure Pipelines"
 
 jobs:
 - job: RestartJob
