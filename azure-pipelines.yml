@@ -7,6 +7,7 @@ jobs:
 - job: RestartJob
   pool:
     name: 'Azure Pipelines'  # Replace 'Default' with the name of your self-hosted agent pool
+    image: 'windows-latest'
   displayName: 'Execute Restart Command on Self-Hosted Agent'
   steps:
   - task: PowerShell@2
